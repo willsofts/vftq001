@@ -83,6 +83,10 @@ export default {
     },
     resetClick() {
       this.localData = {...defaultData};
+      this.resetFilters();
+      this.$refs.dataTable.clear();
+      this.$refs.dataPaging.clear();
+      this.pagingSettings.rows = 0;
     },
     searchClick() {
       this.filters = {...this.localData};
