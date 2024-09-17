@@ -2,6 +2,7 @@
 	{
 		"language": "TH",
 		"label": [
+			{"name": "caption_title", "value": "ตรวจสอบข้อมูล"},
 			{"name": "programid_label", "value": "โปรแกรม"},
 			{"name": "dateto_label", "value": "ถึงวันที่"},
 			{"name": "useralias_headerlabel", "value": "ชื่อผู้ใช้"},
@@ -18,6 +19,7 @@
 	{
 		"language": "EN",
 		"label": [
+			{"name": "caption_title", "value": "Tracking Information"},
 			{"name": "programid_label", "value": "Program"},
 			{"name": "dateto_label", "value": "To Date"},
 			{"name": "seqno_headerlabel", "value": "No."},
