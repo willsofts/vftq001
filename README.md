@@ -36,3 +36,31 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### How To Examine
+1. start [vueserve](https://github.com/willsofts/vueserve) project 
+    goto https://github.com/willsofts/vueserve
+2. api try out, this is supported api that you have created ex. \
+    curl -X POST http://localhost:8080/api/sftq001/collect
+
+This vue application using `sftq001` api to manipulate transaction. \
+In development mode you can setting environment before start up project
+
+    set VALIDATE_TOKEN=false
+
+or
+
+    export VALIDATE_TOKEN=false
+
+### Testing
+1. Normally copy output folder after build success ex. vftq001 into [vueserve](https://github.com/willsofts/vueserve) project under public path and then you can launch it directly ex. 
+
+    http://localhost:8080/vftq001/vftq001.html
+
+2. This can run serve or using file protocol testing but it must build with environment variables,
+try to set below before startup build command.
+
+```
+    set VUE_APP_API_URL=http://127.0.0.1:8080
+    set VUE_APP_BASE_URL=http://127.0.0.1:8080
+```
