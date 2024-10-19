@@ -2,7 +2,7 @@
 <template>
   <div id="fswaitlayer" class="fa fa-spinner fa-spin"></div>
   <div class="pt-page pt-page-current pt-page-controller search-pager">
-    <PageHeader ref="pageHeader" :labels="labels" pid="vftq001" version="1.0.0" showLanguage="true" @language-changed="changeLanguage" />
+    <PageHeader ref="pageHeader" :labels="labels" pid="vftq001" version="1.0.0" showLanguage="true" @language-changed="changeLanguage" :multiLanguages="multiLanguages" />
     <SearchForm ref="searchForm" :labels="labels" />
   </div>
 </template>
@@ -10,21 +10,23 @@
 import { ref } from 'vue';
 import { PageHeader } from '@willsofts/will-control';
 import SearchForm from '@/components/SearchForm.vue';
-import { startApplication, getLabelModel, getDefaultLanguage, setDefaultLanguage } from "@willsofts/will-app";
+import { startApplication, getLabelModel, getDefaultLanguage, setDefaultLanguage, getMultiLanguagesModel } from "@willsofts/will-app";
 
 export default {
   components: {
     PageHeader, SearchForm
   },
   setup() {
+    const multiLanguages = ref(getMultiLanguagesModel());
     let labels = ref(getLabelModel());
-    return { labels };
+    return { labels, multiLanguages };
   },
   mounted() {
     console.log("App: mounted ...");
     this.$nextTick(() => {
       //ensure ui completed then invoke startApplication 
       startApplication("vftq001",(data) => {
+        this.multiLanguages = getMultiLanguagesModel();
         this.messagingHandler(data);
         this.$refs.pageHeader.changeLanguage(getDefaultLanguage());
       });
