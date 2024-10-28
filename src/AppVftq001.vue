@@ -2,7 +2,7 @@
 <template>
   <div id="fswaitlayer" class="fa fa-spinner fa-spin"></div>
   <div class="pt-page pt-page-current pt-page-controller search-pager">
-    <PageHeader ref="pageHeader" :labels="labels" pid="vftq001" version="1.0.0" showLanguage="true" @language-changed="changeLanguage" :multiLanguages="multiLanguages" />
+    <PageHeader ref="pageHeader" :labels="labels" pid="vftq001" version="1.0.0" showLanguage="true" @language-changed="changeLanguage" :multiLanguages="multiLanguages" :build="buildVersion" />
     <SearchForm ref="searchForm" :labels="labels" />
   </div>
 </template>
@@ -12,6 +12,7 @@ import { PageHeader } from '@willsofts/will-control';
 import SearchForm from '@/components/SearchForm.vue';
 import { startApplication, getLabelModel, getDefaultLanguage, setDefaultLanguage, getMultiLanguagesModel } from "@willsofts/will-app";
 
+const buildVersion = process.env.VUE_APP_BUILD_DATETIME;
 export default {
   components: {
     PageHeader, SearchForm
@@ -19,7 +20,7 @@ export default {
   setup() {
     const multiLanguages = ref(getMultiLanguagesModel());
     let labels = ref(getLabelModel());
-    return { labels, multiLanguages };
+    return { buildVersion, labels, multiLanguages };
   },
   mounted() {
     console.log("App: mounted ...");
