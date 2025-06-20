@@ -28,9 +28,17 @@ export default {
     this.$nextTick(() => {
       //ensure ui completed then invoke startApplication 
       startApplication("vftq001",(data) => {
-        this.multiLanguages = getMultiLanguagesModel();
-        this.messagingHandler(data);
-        this.$refs.pageHeader.changeLanguage(getDefaultLanguage());
+        console.log("vueapp: message",data);
+        if(data.type=="language") {
+          let lang = data.language;
+          if(lang) {
+            this.changeLanguage(lang);
+          }
+        } else {
+          this.multiLanguages = getMultiLanguagesModel();
+          this.messagingHandler(data);
+          this.$refs.pageHeader.changeLanguage(getDefaultLanguage());
+        }
       });
       //try to find out parameters from url
       const searchParams = new URLSearchParams(window.location.href);
