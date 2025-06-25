@@ -10,7 +10,7 @@
 import { ref } from 'vue';
 import { PageHeader } from '@willsofts/will-control';
 import SearchForm from '@/components/SearchForm.vue';
-import { startApplication, getLabelModel, getDefaultLanguage, setDefaultLanguage, getMultiLanguagesModel, getMetaInfo } from "@willsofts/will-app";
+import { startApplication, getLabelModel, getDefaultLanguage, setDefaultLanguage, getMultiLanguagesModel, getMetaInfo, loadAndMergeLabel } from "@willsofts/will-app";
 
 const buildVersion = process.env.VUE_APP_BUILD_DATETIME;
 export default {
@@ -38,6 +38,11 @@ export default {
           this.multiLanguages = getMultiLanguagesModel();
           this.messagingHandler(data);
           this.$refs.pageHeader.changeLanguage(getDefaultLanguage());
+          loadAndMergeLabel("vftq001", (success) => {
+            if (success) {
+              this.changeLanguage(getDefaultLanguage());
+            }
+          });
         }
       });
       //try to find out parameters from url
